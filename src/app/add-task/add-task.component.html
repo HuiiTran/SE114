@@ -1,0 +1,55 @@
+<top-bar></top-bar>
+<ScrollView>
+<StackLayout class="container">
+
+    <GridLayout class="grid-container" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*,*">
+        <!-- title -->
+        <Label row="0" col="0" colspan="2" text="Công việc"></Label>
+        <TextView row="1" col="0" colspan="2" required hint="Thêm công việc..." [(ngModel)]="task_name" fontSize="16px" borderColor="gray" height="40"></TextView>
+        
+        <!-- due date -->
+        <Label row="2" col="0" colspan="2" text="Ngày đến hạn"></Label>
+        <DatePickerField  row="3" col="0" [(ngModel)]="date"
+            pickerOkText="OK" pickerCancelText="Cancel" pickerTitleDate="Select date" dateFormat="dd/MM/yyyy" >
+        </DatePickerField >
+        <TimePickerField  row="3" col="1" [(ngModel)]="time"
+            pickerOkText="OK" pickerCancelText="Cancel" pickerTitleTime="Select time" 
+            timeFormat="HH:mm">
+        </TimePickerField >
+
+        <!-- notify -->
+        <DockLayout stretchLastChild="true" row="4" col="0" colSpan="2">
+            <Label dock="left" text="Thông báo"></Label>
+            <Switch dock="right" [(ngModel)]="task_notify"></Switch>
+        </DockLayout>
+
+        <!-- detail -->
+        <Label row="5" col="0" colspan="2" text="Mô tả" ></Label>
+        <TextView row="6" col="0" colspan="2" style="margin-top: 15px" borderColor="gray" borderWidth="1" borderRadius="10" height="auto" 
+        hint=" Thêm mô tả..."  class="input input-border" [(ngModel)]="task_detail"></TextView>
+        <DockLayout stretchLastChild="true" row="7" col="0" colspan="2">
+            <Button class="add-image-btn" dock="left" text="Thêm hình ảnh" (tap)="toggleVisible()"></Button>
+            <Button text="Camera" class="fas camera btn" dock="left" (tap)="takePhoto()" visibility="{{ showButtons ? 'visible' : 'collapsed' }}">
+            </Button>
+            <Button text="Thư viện" class="fas picture btn" dock="left" visibility="{{ showButtons ? 'visible' : 'collapsed' }}" (tap)="pickPhoto()">
+            </Button>
+        </DockLayout>
+
+        <!-- photo -->
+        <ScrollView row="8" col="0" colSpan="2" orientation="horizontal">
+            <StackLayout orientation="horizontal" *ngIf="hasImage">
+                <GridLayout *ngFor="let photo of task_photo" rows="*" columns="auto,20">
+                    <CardView margin="5" elevation="10" radius="25" horizontalAlignment="left">
+                        <Image row="0" col="0" [src]="photo" height="120" width="auto" (tap)="photoViewer(photo)"></Image>
+                    </CardView>
+                    <Button row="0" col="1" text="x" class="fas delete" width="20" height="20" 
+                        (tap)="deletePhoto(photo)" verticalAlignment="top">
+                    </Button>
+                </GridLayout>
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+
+    <Button class="add task" text="Lưu" (tap)="add()"></Button>
+</StackLayout>
+</ScrollView>

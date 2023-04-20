@@ -1,0 +1,32 @@
+<GridLayout rows="auto,*" columns="*" *ngIf="this.tasks.length == 0">
+    <Image row="0" col="0" src="~/app/images/add-task.png" horizontalAlignment="right" marginRight="60"
+        class="add-task-img" width="170" stretch="aspectFit">
+    </Image>
+    <Image row="1" col="0" horizontalAlignment="center" verticalAlignment="center" src="~/app/images/task-empty.png" 
+        class="task-empty-img" width="200" stretch="aspectFit" marginTop="-50">
+    </Image>
+</GridLayout>
+
+<StackLayout>
+    <ListView [items]="tasks" class="list-group" separatorColor="transparent" height="100%">
+        <ng-template let-item="item" let-i="index">
+            <StackLayout>
+                <CardView radius="25" ripple="true">
+                    <GridLayout rows="*,*,*" columns="*,40" class="list-card">
+                        <Label class="header" row="0" col="0" [text]="item.name" (tap)="toDetail(item.id)"></Label>
+                        <Button row="0" col="1" backgroundColor="{{ checklist_id == item.id ? '#38ABFD': '#F1F1F4' }}" 
+                            borderRadius="50" class="{{ checklist_id == item.id ? 'fas checklist' : 'fas check' }}"
+                            text="&#xf00c;" width="35" height="35" (tap)="checklist(item.id)">
+                        </Button>
+                        <Label class="duedate" row="1" col="0" colSpan="2" (tap)="toDetail(item.id)"
+                            [text]="convertDatetime(item.due_date)" horizontalAlignment="left">
+                        </Label>
+                        <Label class="{{ item.overdue ? 'overdue':'countdown' }}" row="2" col="0" colSpan="2" 
+                            (tap)="toDetail(item.id)" [text]="countdown(item.due_date,item.id)">
+                        </Label>
+                    </GridLayout>
+                </CardView>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>

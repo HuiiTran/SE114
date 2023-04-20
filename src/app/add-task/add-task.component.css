@@ -1,0 +1,77 @@
+.container {
+    background-image: url('~/app/images/background-bubble.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.grid-container {
+    margin: 50px;
+    padding: 40px;
+    border-radius: 50px;
+    background-color: #F2F2F7;
+    height: auto;
+}
+
+Label {
+    margin: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+}
+
+
+TextView {
+    margin: 20px;
+    font-size: 16px;
+    color: black;
+}
+
+DatePickerField {
+    margin-left: 20px;
+    border-color: black;
+    color: black;
+    font-size: 16;
+}
+TimePickerField{
+    margin-left: 20px;
+    border-color: black;
+    color: black;
+    font-size: 16;
+}
+
+
+.add-image-btn {
+    width: 40%;
+    height: 2%;
+    background-color: #38ABFD;
+    color: white;
+    font-size: 15px;
+    border-radius: 50px;
+}
+
+.btn {
+    width: 20%;
+    height: 3%;
+    background-color: #38ABFD;
+    color: white;
+    font-size: 15px;
+    border-radius: 50px;
+    visibility: collapsed;
+}
+
+.delete {
+    background-color: #B22222;
+    color: white;
+    border-radius: 50px;
+}
+
+.add.task {
+    height: 8%;
+    margin: 0px 50px 50px 50px;
+    background-color: #1d62cf;
+    color: white;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 500;
+}
