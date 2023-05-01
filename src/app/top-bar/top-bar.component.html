@@ -2,13 +2,13 @@
 <ActionBar *ngIf="router.url === '/'" flat="true" title="Công việc">
     <ActionItem text="About" [nsRouterLink]="['/about']" ios.systemIcon="16" ios.position="right" android.position="popup">
     </ActionItem>
-    <ActionItem ios.systemIcon="4" android.systemIcon="ic_menu_add" ios.position="right" [nsRouterLink]="['/add']">
+    <ActionItem ios.systemIcon="4" android.systemIcon="ic_search" ios.position="right" [nsRouterLink]="['/add']">
     </ActionItem>
 </ActionBar>
 
 <!-- task detail -->
 <ActionBar *ngIf="router.url === '/detail/'+id" flat="true" title="Detail">
-    <NavigationButton android.systemIcon="ic_menu_back" text="Back" [nsRouterLink]="['/']"></NavigationButton>
+    <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="back_previous_page()"></NavigationButton>
     <ActionItem android.systemIcon="ic_menu_delete" ios.position="right"(tap)="delete(task.id)"></ActionItem>
     <ActionItem android.systemIcon="ic_menu_edit" ios.position="right"(tap)="edit(task.id)"></ActionItem>
 </ActionBar>

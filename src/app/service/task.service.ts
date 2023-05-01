@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import * as AppSettings from '@nativescript/core/application-settings'
-import { convertHSLToRGBColor } from '@nativescript/core/css/parser';
 import { LocalNotifications } from '@nativescript/local-notifications';
 import { Task } from "./task"
 

@@ -9,6 +9,7 @@ GridLayout.list-card {
     background-color: #f5f5ff;
 }
 
+
 StackLayout {
     margin-bottom: 30px;
 }
@@ -56,4 +57,17 @@ CardView {
     border-color: #38ABFD;
     border-width: 2;
     color: rgb(221, 219, 219);
+}
+
+.fab{
+    transform: translate(150%, -20%);
+    vertical-align: bottom;
+    text-align: center;
+    margin: 0 20 20 0;
+    font-size: 22;
+    padding: 0;
+    border-width: 1;
+    border-radius: 50;
+    width: 50;
+    height: 50;
 }

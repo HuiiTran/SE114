@@ -1,11 +1,12 @@
-<GridLayout rows="auto,*" columns="*" *ngIf="this.tasks.length == 0">
-    <Image row="0" col="0" src="~/app/images/add-task.png" horizontalAlignment="right" marginRight="60"
-        class="add-task-img" width="170" stretch="aspectFit">
-    </Image>
-    <Image row="1" col="0" horizontalAlignment="center" verticalAlignment="center" src="~/app/images/task-empty.png" 
-        class="task-empty-img" width="200" stretch="aspectFit" marginTop="-50">
-    </Image>
-</GridLayout>
+<GridLayout>
+    <GridLayout rows="auto,*" columns="*" *ngIf="this.tasks.length == 0">
+        <Image row="0" col="0" src="~/app/images/add-task.png" horizontalAlignment="right" marginRight="60"
+            class="add-task-img" width="170" stretch="aspectFit">
+        </Image>
+        <Image row="1" col="0" horizontalAlignment="center" verticalAlignment="center" src="~/app/images/task-empty.png" 
+            class="task-empty-img" width="200" stretch="aspectFit" marginTop="-50">
+        </Image>
+    </GridLayout>
 
 <StackLayout>
     <ListView [items]="tasks" class="list-group" separatorColor="transparent" height="100%">
@@ -30,3 +31,7 @@
         </ng-template>
     </ListView>
 </StackLayout>
+
+    <Button row="2"  [nsRouterLink]="['/add']" text="+" class="fab" ></Button>
+</GridLayout>
+

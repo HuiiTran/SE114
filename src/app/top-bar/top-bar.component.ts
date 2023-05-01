@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { Router,ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common'
 import { Dialogs } from '@nativescript/core'
-import { TaskService } from "~/app/service/task/task.service";
+import { TaskService } from "~/app/service/task.service";
 
 @Component ({
     selector: "top-bar",

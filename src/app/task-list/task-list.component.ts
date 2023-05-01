@@ -4,7 +4,7 @@ import { Page } from "@nativescript/core";
 import { Location } from '@angular/common';
 import { DatePipe } from '@angular/common'
 import { Router } from "@angular/router";
-import { TaskService } from "~/app/service/task/task.service";
+import { TaskService } from "~/app/service/task.service";
 
 @Component ({
     selector: "task-list",

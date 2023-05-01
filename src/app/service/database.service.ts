@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Sqlite } from 'nativescript-sqlite'
 var Sqlite = require('nativescript-sqlite');
 
 @Injectable()

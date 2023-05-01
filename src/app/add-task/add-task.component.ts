@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { TaskService } from "~/app/service/task/task.service";
+import { TaskService } from "~/app/service/task.service";
 import { DatePipe } from '@angular/common'
 import { Location } from '@angular/common'
 import * as camera from "@nativescript/camera";
@@ -9,7 +9,7 @@ import { mergeMap, map } from 'rxjs/operators';
 import { from } from 'rxjs';
 import * as imagepicker from "@nativescript/imagepicker";
 import { Router } from "@angular/router";
-
+import { Dialogs } from '@nativescript/core'
 
 @Component ({
     selector: "add-task",
@@ -23,17 +23,15 @@ export class AddTaskComponent {
     maxDate: Date = new Date()
     showButtons : boolean;
     hasImage : boolean; // for check task has image or not
-
     task_name : string;
     task_detail: string;
     task_photo: Array<string> = [];
     date : Date;
     time : Date;
     task_notify: boolean;
-
     imagePath: string | undefined;
 
-    public constructor(private taskService: TaskService,public datepipe: DatePipe, public location: Location, public router: Router) {
+    public constructor( private taskService: TaskService,public datepipe: DatePipe, public location: Location, public router: Router) {
         this.date = new Date();
         this.time = new Date();
         this.showButtons = false;
@@ -43,13 +41,22 @@ export class AddTaskComponent {
     }
 
     public add() {
-        let overdue : boolean
-        let now = new Date()
-        let datetime = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate(),
-            this.time.getHours(),this.time.getMinutes())
-        datetime < now ? overdue=true : overdue=false // check datetime is overdue or not
-        this.taskService.addTask(this.task_name, this.task_detail, datetime, this.task_photo, this.task_notify, overdue)
-        this.location.back()
+        if(this.task_name != null){
+            let overdue : boolean
+            let now = new Date()
+            let datetime = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate(),
+                this.time.getHours(),this.time.getMinutes())
+            datetime < now ? overdue=true : overdue=false // check datetime is overdue or not
+            this.taskService.addTask(this.task_name, this.task_detail, datetime, this.task_photo, this.task_notify, overdue)
+            this.location.back();
+        }else{
+            const confirmOptions = {
+                title: 'Thông báo',
+                message: 'Thông tin không đầy đủ',
+                okButtonText: 'Vâng',
+            }
+            Dialogs.confirm(confirmOptions)
+        }
     }
  
     public toggleVisible(){

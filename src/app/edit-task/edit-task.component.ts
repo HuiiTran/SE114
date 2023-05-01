@@ -1,6 +1,6 @@
 import { ActivatedRoute} from '@angular/router';
 import { Component } from "@angular/core";
-import { TaskService } from "~/app/service/task/task.service";
+import { TaskService } from "~/app/service/task.service";
 import { Location } from '@angular/common'
 import * as camera from "@nativescript/camera";
 import { ImageAsset } from "@nativescript/core";
@@ -9,7 +9,7 @@ import { flatMap, map } from 'rxjs/operators';
 import { from } from 'rxjs';
 import * as imagepicker from "@nativescript/imagepicker";
 import { Router } from "@angular/router";
-
+import { Dialogs } from '@nativescript/core'
 @Component ({
     selector: "edit-task",
     templateUrl: "./edit-task.component.html",
@@ -48,14 +48,28 @@ export class EditTaskComponent {
     }
 
     public edit(){ 
-        let overdue : boolean
-        let now = new Date()
-        let datetime = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate(),
-            this.time.getHours(),this.time.getMinutes())
-        datetime < now ? overdue=true : overdue=false
-
-        this.taskService.editTask(this.task.id,this.task_name, this.task_detail, datetime, this.task_photo, this.task_notify, overdue)
-        this.location.back()
+        if(this.task_name.length != 0){
+            let overdue : boolean
+            let now = new Date()
+            let datetime = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate(),
+                this.time.getHours(),this.time.getMinutes())
+            datetime < now ? overdue=true : overdue=false
+            this.taskService.editTask(this.task.id,this.task_name, this.task_detail, datetime, this.task_photo, this.task_notify, overdue)
+            this.location.back()
+        }else{
+            const confirmOptions = {
+                title: 'Thông báo',
+                message: 'Thông tin không đầy đủ',
+                okButtonText: 'Vâng',
+                cancelButtonText: 'Hủy bỏ',
+            }
+            Dialogs.confirm(confirmOptions).then(result => {
+                if(!result){
+                    this.location.back()
+                }
+            })
+        }
+        
     }
     
     public getRandomString() {

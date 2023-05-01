@@ -1,7 +1,7 @@
 import { Component} from "@angular/core";
 import { ActivatedRoute, Router} from '@angular/router';
-import { Task } from "~/app/service/task/task";
-import { TaskService } from "~/app/service/task/task.service";
+import { Task } from "~/app/service/task";
+import { TaskService } from "~/app/service/task.service";
 import { Location} from "@angular/common";
 import { Page } from "@nativescript/core";
 
