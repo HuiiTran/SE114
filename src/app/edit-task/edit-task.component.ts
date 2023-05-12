@@ -5,7 +5,7 @@ import { Location } from '@angular/common'
 import * as camera from "@nativescript/camera";
 import { ImageAsset } from "@nativescript/core";
 import { ImageSource, knownFolders} from '@nativescript/core';
-import { flatMap, map } from 'rxjs/operators';
+import { mergeMap, map } from 'rxjs/operators';
 import { from } from 'rxjs';
 import * as imagepicker from "@nativescript/imagepicker";
 import { Router } from "@angular/router";
@@ -17,6 +17,8 @@ import { Dialogs } from '@nativescript/core'
 })
 
 export class EditTaskComponent {
+    public selectedIndex = 1;
+    public items: Array<string>;
     task;
     date: Date;
     time: Date;
@@ -27,6 +29,7 @@ export class EditTaskComponent {
     task_notify: boolean;
     hasImage: boolean;
     imagePath: string | undefined;
+    showButtons : boolean;
     
     constructor(public route: ActivatedRoute,
                public taskService: TaskService,
@@ -41,6 +44,12 @@ export class EditTaskComponent {
                 this.task_notify = this.task.notify
                 this.date = this.task.due_date
                 this.time = this.task.due_date
+                this.showButtons = false;
+                this.hasImage = true;
+                this.items = [];
+        for (var i = 0; i < 5; i++) {
+            this.items.push("data item " + i);
+        }
     }
     
     ngOnInit() {
@@ -71,6 +80,11 @@ export class EditTaskComponent {
         }
         
     }
+
+    public toggleVisible(){
+        this.showButtons = !this.showButtons;
+    }
+
     
     public getRandomString() {
         // random hash generator for generate file name
@@ -87,8 +101,8 @@ export class EditTaskComponent {
             throw new Error('Camera not available');
         }
         from(camera.requestPermissions()).pipe(
-            flatMap(() => camera.takePicture()),
-            flatMap((imageAsset: ImageAsset) => ImageSource.fromAsset(imageAsset)),
+            mergeMap(() => camera.takePicture()),
+            mergeMap((imageAsset: ImageAsset) => ImageSource.fromAsset(imageAsset)),
             map((imageSource: ImageSource) => {
                 // set photo name and path
                 const fileName = this.getRandomString() + ".jpg";
@@ -168,5 +182,13 @@ export class EditTaskComponent {
 
     public photoViewer(src: string){
         this.router.navigate(['/photo', src ]);
+    }
+    public deletePhoto(path: string){
+        for(let i = 0; i < this.task_photo.length; i++) {
+            if(this.task_photo[i] == path) {
+              this.task_photo.splice(i, 1);
+              break;
+            }
+        }
     }
 }

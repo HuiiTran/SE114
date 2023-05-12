@@ -21,6 +21,7 @@
     "@nativescript/local-notifications": "^6.0.0",
     "@nativescript/theme": "~3.0.2",
     "@nstudio/nativescript-cardview": "^2.0.2",
+    "nativescript-drop-down": "^6.0.2",
     "nativescript-sqlite": "^2.8.6",
     "rxjs": "~7.6.0",
     "zone.js": "~0.13.0"

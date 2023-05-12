@@ -10,6 +10,7 @@ import { from } from 'rxjs';
 import * as imagepicker from "@nativescript/imagepicker";
 import { Router } from "@angular/router";
 import { Dialogs } from '@nativescript/core'
+import { LocalNotifications } from '@nativescript/local-notifications';
 
 @Component ({
     selector: "add-task",
@@ -19,6 +20,8 @@ import { Dialogs } from '@nativescript/core'
 })
 
 export class AddTaskComponent {
+    public selectedIndex = 1;
+    public items: Array<string>;
     minDate: Date = new Date()
     maxDate: Date = new Date()
     showButtons : boolean;
@@ -26,28 +29,53 @@ export class AddTaskComponent {
     task_name : string;
     task_detail: string;
     task_photo: Array<string> = [];
+    photo: Array<string> = [];
     date : Date;
     time : Date;
     task_notify: boolean;
-    imagePath: string | undefined;
-
+    imagePath: string | undefined;textFieldValue
     public constructor( private taskService: TaskService,public datepipe: DatePipe, public location: Location, public router: Router) {
         this.date = new Date();
         this.time = new Date();
         this.showButtons = false;
         this.hasImage = false;
         this.task_photo = []
+        this.photo = []
         this.task_notify = true
+        this.items = [];
+        for (var i = 0; i < 5; i++) {
+            this.items.push("data item " + i);
+        }
+        
     }
-
-    public add() {
-        if(this.task_name != null){
+    public add(){
+        var length = this.task_name?.length || 0;
+        if(length != 0){
             let overdue : boolean
             let now = new Date()
             let datetime = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate(),
                 this.time.getHours(),this.time.getMinutes())
             datetime < now ? overdue=true : overdue=false // check datetime is overdue or not
             this.taskService.addTask(this.task_name, this.task_detail, datetime, this.task_photo, this.task_notify, overdue)
+            // if(this.task_notify == true){
+            //     LocalNotifications.schedule([
+            //         {
+            //             id: 5,
+            //             thumbnail: true,
+            //             title: 'Richard wants your input',
+            //             body: '"Hey man, what do you think of the new design?" (swipe down to reply, or tap to open the app)',
+            //             forceShowWhenInForeground: true,
+            //             at: new Date(new Date().getTime() + 10 * 1000),
+            //         },
+            //     ]).then(() => {
+            //       alert({
+            //         title: "Notification scheduled",
+            //         message: "ID: 5",
+            //         okButtonText: "OK, thanks"
+            //       });
+            //     })
+            //     .catch(error => console.log("doScheduleId5WithInput error: " + error));
+            // }
             this.location.back();
         }else{
             const confirmOptions = {

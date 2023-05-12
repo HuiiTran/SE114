@@ -1,0 +1,9 @@
+ActionBar {
+    background-color: #1D62CF;
+}
+
+TextView {
+    margin: 20px;
+    font-size: 16px;
+    color: white;
+}

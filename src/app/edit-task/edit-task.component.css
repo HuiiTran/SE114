@@ -13,6 +13,11 @@
     height: auto;
 }
 
+DropDown{
+    font-size: 16;
+    margin-left: 30px;
+}
+
 Label {
     margin: 20px;
     font-size: 20px;
@@ -57,4 +62,13 @@ TimePickerField{
     border-radius: 50px;
     font-size: 20px;
     font-weight: 500;
+}
+
+.add-image-btn {
+    width: 40%;
+    height: 2%;
+    background-color: #38ABFD;
+    color: white;
+    font-size: 15px;
+    border-radius: 50px;
 }

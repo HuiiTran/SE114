@@ -11,6 +11,7 @@
     border-radius: 50px;
     background-color: #F2F2F7;
     height: auto;
+    
 }
 
 Label {
@@ -20,11 +21,15 @@ Label {
     color: black;
 }
 
-
 TextView {
     margin: 20px;
     font-size: 16px;
     color: black;
+}
+
+DropDown{
+    font-size: 16;
+    margin-left: 30px;
 }
 
 DatePickerField {
@@ -75,3 +80,4 @@ TimePickerField{
     font-size: 20px;
     font-weight: 500;
 }
+

@@ -17,14 +17,14 @@ export class AppComponent {
             } 
         );
         db.execSQL(
-            'CREATE TABLE IF NOT EXISTS Task (task_id INTEGER PRIMARY KEY AUTOINCREMENT, task_name TEXT, task_date TEXT, task_detail TEXT, task_notify INTEGER, task_overdue INTEGER)'
+            'CREATE TABLE IF NOT EXISTS Task (task_id INTEGER PRIMARY KEY AUTOINCREMENT, task_name TEXT, task_date TEXT, task_detail TEXT,  task_photo TEXT , task_notify INTEGER, task_overdue INTEGER)'
         ).then(
             () => {},
             error => {
                 console.log('CREATE TABLE ERROR', error);
             }
         );
-        db.execSQL(
+        db.execSQL( 
           'CREATE TABLE IF NOT EXISTS Task_Photo (task_id INTEGER, taskphoto_id INTEGER, tp_name TEXT , PRIMARY KEY (task_id, taskphoto_id))'
       ).then(
           () => {},

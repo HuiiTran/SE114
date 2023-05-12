@@ -60,7 +60,7 @@ CardView {
 }
 
 .fab{
-    transform: translate(150%, -20%);
+    horizontal-align: right;
     vertical-align: bottom;
     text-align: center;
     margin: 0 20 20 0;

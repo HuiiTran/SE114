@@ -1,9 +1,11 @@
-<GridLayout>
-    <GridLayout rows="auto,*" columns="*" *ngIf="this.tasks.length == 0">
-        <Image row="1" col="0" horizontalAlignment="center" verticalAlignment="center" src="~/app/images/task-empty.png" 
-            class="task-empty-img" width="200" stretch="aspectFit" marginTop="-50">
-        </Image>
+<!-- search -->
+<ActionBar *ngIf="router.url === '/search'" flat="true" title = "menu">
+    <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="back_previous_page()"></NavigationButton>
+    <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*,*">
+        <TextView row="1" col="0" colspan="2"  height="40"
+        hint=" Tìm kiếm..."  class="input input-border" [(ngModel)]="task_name" ></TextView>
     </GridLayout>
+</ActionBar>
 
 <StackLayout>
     <ListView [items]="tasks" class="list-group" separatorColor="transparent" height="100%">
@@ -28,6 +30,3 @@
         </ng-template>
     </ListView>
 </StackLayout>
-    <Button row="2"  [nsRouterLink]="['/add']" text="+" class="fab" ></Button>
-</GridLayout>
-

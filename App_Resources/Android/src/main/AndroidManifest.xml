@@ -12,6 +12,14 @@
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.VIBRATE"/>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+	<uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
 	<application
 		android:name="com.tns.NativeScriptApplication"
@@ -38,5 +46,9 @@
 			</intent-filter>
 		</activity>
 		<activity android:name="com.tns.ErrorReportActivity"/>
+		<receiver android:name="com.telerik.localnotifications.NotificationRestoreReceiver" android:exported="false" />
+		<receiver android:name="com.telerik.localnotifications.TriggerReceiver" />
+		<receiver android:name="com.telerik.localnotifications.ClearReceiver" />
+		<service android:name="com.telerik.localnotifications.NotificationService" />
 	</application>
 </manifest>
