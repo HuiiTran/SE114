@@ -7,7 +7,7 @@
 </ActionBar>
 
 <!-- task detail -->
-<ActionBar *ngIf="router.url === '/detail/'+id" flat="true" title="Detail">
+<ActionBar *ngIf="router.url === '/detail/'+id" flat="true" title="Chi tiết">
     <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="back_previous_page()"></NavigationButton>
     <ActionItem android.systemIcon="ic_menu_delete" ios.position="right"(tap)="delete(task.id)"></ActionItem>
     <ActionItem android.systemIcon="ic_menu_edit" ios.position="right"(tap)="edit(task.id)"></ActionItem>
@@ -19,7 +19,7 @@
 </ActionBar>
 
 <!-- edit task -->
-<ActionBar *ngIf="router.url === '/edit/'+id" flat="true" title="Edit Task">
+<ActionBar *ngIf="router.url === '/edit/'+id" flat="true" title="Chỉnh sửa">
     <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="back_previous_page()"></NavigationButton>
 </ActionBar>
 

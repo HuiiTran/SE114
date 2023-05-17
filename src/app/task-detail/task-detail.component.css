@@ -36,4 +36,6 @@ Label {
     font-size: 18px;
     font-weight: 500;
     color: #1872b3;
+    word-wrap: break-word;
+    max-width: 150px;
 }

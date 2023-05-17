@@ -8,7 +8,10 @@
 
         <label row="2" col="0" colSpan="2" text="Mô tả" class="topic" *ngIf="task.photo.length>0 || task.detail"></label>
         <GridLayout row="3" col="0" colSpan="2" rows="auto,auto" columns="*" class="about-container">
-            <label row="0" col="0" *ngIf="task.detail" [text]="task.detail" class="content"></label>
+            <ScrollView row="0" col="0" orientation="vertical" class="scroll-view">
+                <TextView *ngIf="task.detail" [text]="task.detail" class="content" editable = "false"></TextView>
+              </ScrollView>
+            <!-- <label row="0" col="0" *ngIf="task.detail" [text]="task.detail" class="content" ></label> -->
 
             <ScrollView row="1" col="0" orientation="horizontal">
                 <StackLayout orientation="horizontal" *ngIf="task.photo">

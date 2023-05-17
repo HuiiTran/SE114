@@ -56,7 +56,7 @@ export class TaskListComponent implements AfterViewInit {
                 this.taskService.setOverdue(id, true) 
             }
             finally {
-                return this.formatString('Đến hạn sau : {0} {1} {2} quá hạn', this.pluralize(Math.abs(days),'day'),
+                return this.formatString('Đã hết hạn : {0} {1} {2} quá hạn', this.pluralize(Math.abs(days),'day'),
                 this.pluralize(Math.abs(hour),'hour'),this.pluralize(Math.abs(min),'min'))
             }
         }
